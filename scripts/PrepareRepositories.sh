@@ -16,11 +16,26 @@ else
     GITHUB_BASE="git@github.com:${GITHUB_USER}";
 fi;
 
-git clone "${GITHUB_BASE}/crucible-code.git" repos/crucible-code;
-ln -s crucible-code repos/OneLife;
+if [[ ! -d repos/crucible-code ]]; then
+    git clone "${GITHUB_BASE}/crucible-code.git" repos/crucible-code;
+fi;
 
-git clone "${GITHUB_BASE}/crucible-data.git" repos/crucible-data;
-ln -s crucible-data repos/OneLifeData7;
+if [[ ! -e repos/OneLife ]]; then
+    ln -s crucible-code repos/OneLife;
+fi;
 
-git clone "${GITHUB_BASE}/crucible-gems.git" repos/crucible-gems;
-ln -s crucible-gems repos/minorGems;
+if [[ ! -d repos/crucible-data ]]; then
+    git clone "${GITHUB_BASE}/crucible-data.git" repos/crucible-data;
+fi;
+
+if [[ ! -e repos/OneLifeData7 ]]; then
+    ln -s crucible-data repos/OneLifeData7;
+fi;
+
+if [[ ! -e repos/crucible-gems ]]; then
+    git clone "${GITHUB_BASE}/crucible-gems.git" repos/crucible-gems;
+fi;
+
+if [[ ! -e repos/minorGems ]]; then
+    ln -s crucible-gems repos/minorGems;
+fi;
