@@ -44,4 +44,6 @@ for REPO in ${REPO_CODE} ${REPO_DATA} ${REPO_GEMS}; do
 
     git -C "${REPO}" tag -a -m "Version ${CURRENT_VERSION}" "${TAG_BASE}${CURRENT_VERSION}";
 
+    git -C "${REPO}" push origin master --tags;
+
 done;
