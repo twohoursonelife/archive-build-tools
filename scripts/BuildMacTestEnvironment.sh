@@ -20,21 +20,15 @@ for TARGET in animations categories ground music objects overlays scenes sounds 
 
     [[ -e "build/client/${TARGET}" ]] || ln -s "../../repos/OneLifeData7/${TARGET}" "build/client/${TARGET}";
 
-    [[ -e "build/${TARGET}" ]] || ln -s "client/${TARGET}" "build/${TARGET}";
-
 done;
 
 for TARGET in graphics languages otherSounds eqImpulseResponse.aiff reverbImpulseResponse.aiff OneLife EditOneLife; do
 
     [[ -e "build/client/${TARGET}" ]] || ln -s "../../repos/OneLife/gameSource/${TARGET}" "build/client/${TARGET}";
 
-    [[ -e "build/${TARGET}" ]] || ln -s "client/${TARGET}" "build/${TARGET}";
-
 done;
 
 [[ -d build/client/settings ]] || mkdir build/client/settings;
-
-[[ -d build/settings ]] || ln -s client/settings build/settings;
 
 for SETTING in $(ls repos/OneLife/gameSource/settings); do
 
