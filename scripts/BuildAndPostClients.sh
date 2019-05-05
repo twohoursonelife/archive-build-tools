@@ -241,11 +241,7 @@ if [[ "${CURRENT_VERSION}" -ge 3 ]]; then
 
     ./makeDistributionWindows "v${PREVIOUS_VERSION}";
 
-    cd windows;
-
-    zip -r "OneLife_v${PREVIOUS_VERSION}_Windows.zip" "OneLife_v${PREVIOUS_VERSION}";
-
-    cd ../../..;
+    cd ../..;
 
 fi;
 
@@ -290,7 +286,7 @@ done;
 
 
 ###############################################################################
-## macOS ######################################################################
+## MacOS ######################################################################
 ###############################################################################
 
 
@@ -407,11 +403,7 @@ if [[ "${CURRENT_VERSION}" -ge 3 ]]; then
 
     ./makeDistributionMacOSX "v${PREVIOUS_VERSION}" IntelMacOSX ../../../macos_deps/SDL.framework;
 
-    cd mac;
-
-    cp "OneLife_v${PREVIOUS_VERSION}_IntelMacOSX.tar.gz" ~/diff_bundles;
-
-    cd ../../..;
+    cd ../..;
 
 fi;
 
@@ -435,7 +427,7 @@ if [[ "${CURRENT_VERSION}" -ge 3 ]]; then
         "OneLife_v${CURRENT_VERSION}" \
         "${CURRENT_VERSION}_inc_mac.dbz";
 
-    cp "${CURRENT_VERSION}_inc_mac.dbz" ~;
+    cp "${CURRENT_VERSION}_inc_mac.dbz" ~/diff_bundles;
 
     cd ../../..;
 
