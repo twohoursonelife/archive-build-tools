@@ -4,6 +4,10 @@ set -e;
 
 cd "$(dirname "${0}")/..";
 
+source ./scripts/CommonVariables.sh;
+
+
+
 GITHUB_USER="${1}";
 
 if [[ -z "${GITHUB_USER}" ]]; then
