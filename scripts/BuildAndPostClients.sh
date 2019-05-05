@@ -80,7 +80,7 @@ cd ../build/source;
 
 ./makeLinuxBuild "v${CURRENT_VERSION}";
 
-cp "OneLife_v${CURRENT_VERSION}_Linux.tar.gz" ~;
+cp "OneLife_v${CURRENT_VERSION}_Linux.tar.gz" ~/client_builds;
 
 cd ../../..;
 
@@ -129,7 +129,7 @@ if [[ "${CURRENT_VERSION}" -ge 3 ]]; then
         "OneLife_v${CURRENT_VERSION}" \
         "${CURRENT_VERSION}_inc_linux.dbz";
 
-    cp "${CURRENT_VERSION}_inc_linux.dbz" ~;
+    cp "${CURRENT_VERSION}_inc_linux.dbz" ~/diff_bundles;
 
     cd ../../..;
 
@@ -210,7 +210,7 @@ cd windows;
 
 zip -r "OneLife_v${CURRENT_VERSION}_Windows.zip" "OneLife_v${CURRENT_VERSION}";
 
-cp "OneLife_v${CURRENT_VERSION}_Windows.zip" ~;
+cp "OneLife_v${CURRENT_VERSION}_Windows.zip" ~/client_builds;
 
 cd ../../..;
 
@@ -269,7 +269,7 @@ if [[ "${CURRENT_VERSION}" -ge 3 ]]; then
         "OneLife_v${CURRENT_VERSION}" \
         "${CURRENT_VERSION}_inc_win.dbz";
 
-    cp "${CURRENT_VERSION}_inc_win.dbz" ~;
+    cp "${CURRENT_VERSION}_inc_win.dbz" ~/diff_bundles;
 
     cd ../../..;
 
@@ -350,7 +350,7 @@ cd OneLife;
 
 cd gameSource;
 
-_OLD_PATH="${PATH}"; export PATH="/home/richard/macos/osxcross/target/bin:${PATH}";
+_OLD_PATH="${PATH}"; export PATH="/home/richard/osxcross/target/bin:${PATH}";
 
 cp Makefile Makefile.bak;
 
@@ -370,7 +370,7 @@ cd ../build;
 
 cd mac;
 
-cp "OneLife_v${CURRENT_VERSION}_IntelMacOSX.tar.gz" ~;
+cp "OneLife_v${CURRENT_VERSION}_IntelMacOSX.tar.gz" ~/client_builds;
 
 cd ../../..;
 
@@ -389,7 +389,7 @@ if [[ "${CURRENT_VERSION}" -ge 3 ]]; then
 
     cd gameSource;
 
-    _OLD_PATH="${PATH}"; export PATH="/home/richard/macos/osxcross/target/bin:${PATH}";
+    _OLD_PATH="${PATH}"; export PATH="/home/richard/osxcross/target/bin:${PATH}";
 
     cp Makefile Makefile.bak;
 
@@ -409,7 +409,7 @@ if [[ "${CURRENT_VERSION}" -ge 3 ]]; then
 
     cd mac;
 
-    cp "OneLife_v${PREVIOUS_VERSION}_IntelMacOSX.tar.gz" ~;
+    cp "OneLife_v${PREVIOUS_VERSION}_IntelMacOSX.tar.gz" ~/diff_bundles;
 
     cd ../../..;
 
