@@ -2,7 +2,7 @@ const execSync = require('child_process').execSync;
 const fs = require('fs');
 
 if (!process.argv[2]) {
-  console.log(`Run with node ${process.argv[1]} <start_number> <offset?>`);
+  console.log(`Run with node ${process.argv[1]} <start_number> <offset?> <end_number?>`);
   return;
 }
 
@@ -10,10 +10,14 @@ if (!process.argv[2]) {
 const sourceNumber = Number(process.argv[2]);
 let startNumber = 0;
 let offset = 0;
+let endNumber = null;
 let highestId = 0;
 if (process.argv[3]) {
   startNumber = sourceNumber;
   offset = Number(process.argv[3]);
+}
+if (process.argv[4]) {
+  endNumber = Number(process.argv[4]);
 }
 
 let spriteIds = [];
@@ -45,7 +49,7 @@ for (const file of spriteFileList) {
     continue;
   }
   const thisId = Number(file.replace('.txt', ''));
-  if (thisId >= startNumber) {
+  if (thisId >= startNumber && (endNumber === null || thisId <= endNumber)) {
     spriteIds.push(thisId);
     highestId = Math.max( highestId, thisId + offset);
   }
@@ -82,7 +86,7 @@ for (const file of objectFileList) {
   let needsReplacing = false;
   for (const match of spriteMatch) {
     const spriteId = Number(match.match(/spriteID=(\d+)?/)[1]);
-    if (spriteId >= startNumber) {
+    if (spriteId >= startNumber && (endNumber === null || spriteId <= endNumber)) {
       needsReplacing = true;
       spriteIds.push(spriteId);
     }
