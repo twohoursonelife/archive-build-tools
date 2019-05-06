@@ -16,7 +16,7 @@ rm repos/OneLifeData7/*/bin_*cache.fcz || true;
 
 [[ -d build/client ]] || mkdir build/client;
 
-for TARGET in animations categories ground music objects overlays scenes sounds soundsRaw sprites transitions dataVersionNumber.txt; do
+for TARGET in animations categories ground music objects scenes sounds soundsRaw sprites transitions dataVersionNumber.txt; do
 
     [[ -e "build/client/${TARGET}" ]] || ln -s "../../repos/OneLifeData7/${TARGET}" "build/client/${TARGET}";
 
@@ -67,7 +67,7 @@ done;
 for SETTING in $(ls repos/OneLife/server/settings); do
 
     [[ -f "build/server/settings/${SETTING}" ]] || cp "repos/OneLife/server/settings/${SETTING}" "build/server/settings/${SETTING}";
-    
+
 done;
 
 echo 0 > build/server/settings/apocalypsePossible.ini;
