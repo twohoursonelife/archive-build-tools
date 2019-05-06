@@ -82,6 +82,9 @@ for (const file of objectFileList) {
   }
   let fileContent = fs.readFileSync(`objects/${file}`).toString();
   const spriteMatch = fileContent.match(/spriteID=(\d+)?\r?\n/g);
+  if (!spriteMatch) {
+    continue;
+  }
   let spriteIds = [];
   let needsReplacing = false;
   for (const match of spriteMatch) {
