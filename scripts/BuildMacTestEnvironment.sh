@@ -10,29 +10,43 @@ source ./scripts/CommonVariables.sh;
 
 [[ -d build ]] || mkdir build;
 
-rm repos/OneLifeData7/*/cache.fcz || true;
+rm repos/OneLifeData7/*/cache.fcz 2>/dev/null || true;
 
-rm repos/OneLifeData7/*/bin_*cache.fcz || true;
+rm repos/OneLifeData7/*/bin_*cache.fcz 2>/dev/null || true;
 
 [[ -d build/client ]] || mkdir build/client;
+
+[[ -d build/editor ]] || mkdir build/editor;
 
 for TARGET in animations categories ground music objects scenes sounds soundsRaw sprites transitions dataVersionNumber.txt; do
 
     [[ -e "build/client/${TARGET}" ]] || ln -s "../../repos/OneLifeData7/${TARGET}" "build/client/${TARGET}";
 
+    [[ -e "build/editor/${TARGET}" ]] || ln -s "../../repos/OneLifeData7/${TARGET}" "build/editor/${TARGET}";
+
 done;
 
-for TARGET in graphics languages otherSounds eqImpulseResponse.aiff reverbImpulseResponse.aiff OneLife EditOneLife; do
+for TARGET in graphics languages otherSounds eqImpulseResponse.aiff reverbImpulseResponse.aiff; do
 
     [[ -e "build/client/${TARGET}" ]] || ln -s "../../repos/OneLife/gameSource/${TARGET}" "build/client/${TARGET}";
 
+    [[ -e "build/editor/${TARGET}" ]] || ln -s "../../repos/OneLife/gameSource/${TARGET}" "build/editor/${TARGET}";
+
 done;
 
+[[ -e "build/client/OneLife" ]] || ln -s "../../repos/OneLife/gameSource/OneLife" "build/client/OneLife";
+
+[[ -e "build/editor/EditOneLife" ]] || ln -s "../../repos/OneLife/gameSource/EditOneLife" "build/editor/EditOneLife";
+
 [[ -d build/client/settings ]] || mkdir build/client/settings;
+
+[[ -d build/editor/settings ]] || mkdir build/editor/settings;
 
 for SETTING in $(ls repos/OneLife/gameSource/settings); do
 
     [[ -f "build/client/settings/${SETTING}" ]] || cp "repos/OneLife/gameSource/settings/${SETTING}" "build/client/settings/${SETTING}";
+
+    [[ -f "build/editor/settings/${SETTING}" ]] || cp "repos/OneLife/gameSource/settings/${SETTING}" "build/editor/settings/${SETTING}";
 
 done;
 
@@ -45,6 +59,8 @@ echo 0 > build/client/settings/fullscreen.ini
 echo 1 > build/client/settings/tutorialDone.ini;
 
 echo 1 > build/client/settings/useCustomServer.ini;
+
+echo 1 > build/editor/settings/fullscreen.ini
 
 [[ -d build/server ]] || mkdir build/server;
 
