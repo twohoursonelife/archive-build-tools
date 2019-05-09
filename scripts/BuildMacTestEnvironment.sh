@@ -10,10 +10,6 @@ source ./scripts/CommonVariables.sh;
 
 [[ -d build ]] || mkdir build;
 
-rm repos/OneLifeData7/*/cache.fcz 2>/dev/null || true;
-
-rm repos/OneLifeData7/*/bin_*cache.fcz 2>/dev/null || true;
-
 [[ -d build/client ]] || mkdir build/client;
 
 [[ -d build/editor ]] || mkdir build/editor;
