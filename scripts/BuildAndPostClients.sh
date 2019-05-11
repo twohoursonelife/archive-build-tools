@@ -459,13 +459,18 @@ fi;
 
 if is_flag_on "post"; then
     cd ..;
-    if is_flag_on "tag"; then
+    if is_flag_on "client" && is_flag_on "tag"; then
         sudo cp output/clientBuilds/* /var/www/html/download/clientBuilds;
         sudo cp output/diffBundles/* /var/www/html/download/diffBundles;
     elif is_flag_on "master"; then
-        sudo rm /var/www/html/download/latestBuilds/* || true;
-        sudo cp output/clientBuilds/* /var/www/html/download/latestBuilds;
-        sudo cp output/editorBuilds/* /var/www/html/download/latestBuilds;
+        if is_flag_on "client"; then
+            sudo rm /var/www/html/download/latestBuilds/OneLife_v* || true;
+            sudo cp output/clientBuilds/* /var/www/html/download/latestBuilds;
+        fi;
+        if is_flag_on "editor"; then
+            sudo rm /var/www/html/download/latestBuilds/EditOneLife_v* || true;
+            sudo cp output/editorBuilds/* /var/www/html/download/latestBuilds;
+        fi;
     fi;
     cd repos;
 fi;
