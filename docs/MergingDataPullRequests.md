@@ -1,4 +1,4 @@
-# Merging Data Changes
+# Merging Data Pull Requests
 
 Merging data pull requests requires a few extra steps to ensure consistency and generates a bunch of extra commits. The methodology here is that the next object, sprite and sound numbers are always 20000 on all incoming changes. When we merge we also renumber these files down to just above the otherwise highest number. There are scripts that handle this that will require a nodejs installation.
 
