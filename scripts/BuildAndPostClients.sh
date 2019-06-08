@@ -462,7 +462,7 @@ if is_flag_on "post"; then
     if is_flag_on "client" && is_flag_on "tag"; then
         sudo cp output/clientBuilds/* /var/www/html/download/clientBuilds;
         sudo cp output/diffBundles/* /var/www/html/download/diffBundles;
-        sudo sed -i "s/[0-9]\+/${CURRENT_VERSION}" /var/www/html/reflector/requiredVersion.php;
+        sudo sed -i "s/[0-9]\+/${CURRENT_VERSION}/" /var/www/html/reflector/requiredVersion.php;
         ssh -n richard@server1.oho.life '~/checkout/OneLife/scripts/remoteServerShutdown.sh'
         ssh -n richard@server1.oho.life '~/checkout/OneLife/scripts/remoteServerUpdate.sh'
         ssh -n richard@server1.oho.life '~/checkout/OneLife/scripts/remoteServerStartup.sh'
