@@ -95,7 +95,7 @@ if is_flag_on "linux"; then
 
     # Build the previous version distribution.
 
-    if is_flag_on "client" && is_flag_on "tag"; then
+    if is_flag_on "client" && is_flag_on "tag" && is_flag_off "break"; then
         for REPO in ${REPO_CODE} ${REPO_DATA} ${REPO_GEMS}; do
             git -C "${REPO}" checkout "${PREVIOUS_VERSION_REF}";
         done;
@@ -110,7 +110,7 @@ if is_flag_on "linux"; then
 
     # Build the incremental bundle.
 
-    if is_flag_on "client" && is_flag_on "tag"; then
+    if is_flag_on "client" && is_flag_on "tag" && is_flag_off "break"; then
         for REPO in ${REPO_CODE} ${REPO_DATA} ${REPO_GEMS}; do
             git -C "${REPO}" checkout "${CURRENT_VERSION_REF}";
         done;
@@ -290,7 +290,7 @@ if is_flag_on "windows"; then
 
     # Build the previous version distribution.
 
-    if is_flag_on "client" && is_flag_on "tag"; then
+    if is_flag_on "client" && is_flag_on "tag" && is_flag_off "break"; then
         for REPO in ${REPO_CODE} ${REPO_DATA} ${REPO_GEMS}; do
             git -C "${REPO}" checkout "${PREVIOUS_VERSION_REF}";
         done;
@@ -309,7 +309,7 @@ if is_flag_on "windows"; then
 
     # Build the incremental bundle.
 
-    if is_flag_on "client" && is_flag_on "tag"; then
+    if is_flag_on "client" && is_flag_on "tag" && is_flag_off "break"; then
         for REPO in ${REPO_CODE} ${REPO_DATA} ${REPO_GEMS}; do
             git -C "${REPO}" checkout "${CURRENT_VERSION_REF}";
         done;
@@ -404,7 +404,7 @@ if is_flag_on "macos"; then
 
     # Build the previous version distribution.
 
-    if is_flag_on "client" && is_flag_on "tag"; then
+    if is_flag_on "client" && is_flag_on "tag" && is_flag_off "break"; then
         for REPO in ${REPO_CODE} ${REPO_DATA} ${REPO_GEMS}; do
             git -C "${REPO}" checkout "${PREVIOUS_VERSION_REF}";
         done;
@@ -425,7 +425,7 @@ if is_flag_on "macos"; then
 
     # Build the incremental bundle.
 
-    if is_flag_on "client" && is_flag_on "tag"; then
+    if is_flag_on "client" && is_flag_on "tag" && is_flag_off "break"; then
         for REPO in ${REPO_CODE} ${REPO_DATA} ${REPO_GEMS}; do
             git -C "${REPO}" checkout "${CURRENT_VERSION_REF}";
         done;
@@ -461,19 +461,19 @@ if is_flag_on "post"; then
     cd ..;
     if is_flag_on "client" && is_flag_on "tag"; then
         if is_flag_on "linux"; then
-            sudo rm /var/www/html/download/clientBuilds/*_Linux.tar.gz;
-            sudo rm /var/www/html/download/diffBundles/*_linux.dbz;
+            sudo rm /var/www/html/download/clientBuilds/*_Linux.tar.gz || true;
+            sudo rm /var/www/html/download/diffBundles/*_linux.dbz || true;
         fi;
         if is_flag_on "windows"; then
-            sudo rm /var/www/html/download/clientBuilds/*_Windows.zip;
-            sudo rm /var/www/html/download/diffBundles/*_win.dbz;
+            sudo rm /var/www/html/download/clientBuilds/*_Windows.zip || true;
+            sudo rm /var/www/html/download/diffBundles/*_win.dbz || true;
         fi;
         if is_flag_on "macos"; then
-            sudo rm /var/www/html/download/clientBuilds/*_IntelMacOSX.tar.gz;
-            sudo rm /var/www/html/download/diffBundles/*_mac.dbz;
+            sudo rm /var/www/html/download/clientBuilds/*_IntelMacOSX.tar.gz || true;
+            sudo rm /var/www/html/download/diffBundles/*_mac.dbz || true;
         fi;
-        sudo cp output/clientBuilds/* /var/www/html/download/clientBuilds;
-        sudo cp output/diffBundles/* /var/www/html/download/diffBundles;
+        sudo cp output/clientBuilds/* /var/www/html/download/clientBuilds || true;
+        sudo cp output/diffBundles/* /var/www/html/download/diffBundles || true;
         sudo sed -i "s/[0-9]\+/${CURRENT_VERSION}/" /var/www/html/reflector/requiredVersion.php;
         ssh -n richard@server1.oho.life '~/checkout/OneLife/scripts/remoteServerShutdown.sh'
         ssh -n richard@server1.oho.life '~/checkout/OneLife/scripts/remoteServerUpdate.sh'
