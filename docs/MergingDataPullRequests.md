@@ -20,3 +20,36 @@ Suppose we have received a pull request from REMOTE/BRANCH, here are the steps w
 12. Commit if necessary: `git add . && git commit -m 'Renumber sounds for REMOTE/BRANCH'`
 13. Build and run the client and server.
 14. Push the changes: `git push`
+
+
+```bash
+
+set -e;
+
+REMOTE="${1}"
+BRANCH="${2}"
+
+if ! git remote | grep -q "${REMOTE}"; then
+    git remote add "${REMOTE}" "https://github.com/${REMOTE}/crucible-data.git";
+fi;
+git fetch "${REMOTE}" "${BRANCH}";
+git checkout master;
+git merge "${REMOTE}/${BRANCH}";
+node ../../scripts/RenumberObjects.js 20000;
+if ! git diff-index --quiet HEAD --; then
+    git add .;
+    git commit -m "Renumber objects for ${REMOTE}/${BRANCH}";
+fi;
+node ../../scripts/RenumberSprites.js 20000;
+if ! git diff-index --quiet HEAD --; then
+    git add .;
+    git commit -m "Renumber sprites for ${REMOTE}/${BRANCH}";
+fi;
+node ../../scripts/RenumberSounds.js 20000;
+if ! git diff-index --quiet HEAD --; then
+    git add .;
+    git commit -m "Renumber sounds for ${REMOTE}/${BRANCH}";
+fi;
+git push;
+
+```

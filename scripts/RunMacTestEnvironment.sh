@@ -28,6 +28,6 @@ pwd > ~/Library/Preferences/Crucible_prefs.txt;
 
 ./Crucible || echo "Exited with status code ${?}";
 
-cp ~/Library/Preferences/Crucible_prefs.bak ~/Library/Preferences/Crucible_prefs.txt;
+mv ~/Library/Preferences/Crucible_prefs.bak ~/Library/Preferences/Crucible_prefs.txt;
 
 pkill -TSTP CrucibleServer;
