@@ -460,6 +460,18 @@ fi;
 if is_flag_on "post"; then
     cd ..;
     if is_flag_on "client" && is_flag_on "tag"; then
+        if is_flag_on "linux"; then
+            sudo rm /var/www/html/download/clientBuilds/*_Linux.tar.gz;
+            sudo rm /var/www/html/download/diffBundles/*_linux.dbz;
+        fi;
+        if is_flag_on "windows"; then
+            sudo rm /var/www/html/download/clientBuilds/*_Windows.zip;
+            sudo rm /var/www/html/download/diffBundles/*_win.dbz;
+        fi;
+        if is_flag_on "macos"; then
+            sudo rm /var/www/html/download/clientBuilds/*_IntelMacOSX.tar.gz;
+            sudo rm /var/www/html/download/diffBundles/*_mac.dbz;
+        fi;
         sudo cp output/clientBuilds/* /var/www/html/download/clientBuilds;
         sudo cp output/diffBundles/* /var/www/html/download/diffBundles;
         sudo sed -i "s/[0-9]\+/${CURRENT_VERSION}/" /var/www/html/reflector/requiredVersion.php;
