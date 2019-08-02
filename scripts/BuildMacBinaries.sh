@@ -16,7 +16,7 @@ export CUSTOM_MACOSX_LINK_FLAGS="-F /Library/Frameworks";
 sed -Ei -e 's#/usr/lib/libz.a#/usr/local/opt/zlib/lib/libz.a#' Makefile
 sed -Ei -e 's#/usr/lib/libpng.a#/usr/local/lib/libpng.a#' Makefile
 
-[[ -e OneLife ]] && rm OneLife;
+[[ -e Crucible ]] && rm Crucible;
 
 make;
 
@@ -26,6 +26,6 @@ cd ../server;
 
 ./configure 2;
 
-[[ -e OneLifeServer ]] && rm OneLifeServer;
+[[ -e CrucibleServer ]] && rm CrucibleServer;
 
 make;

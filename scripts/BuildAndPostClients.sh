@@ -89,7 +89,7 @@ if is_flag_on "linux"; then
         make;
         cd ../build/source;
         ./makeLinuxBuild "v${CURRENT_VERSION}";
-        cp "OneLife_v${CURRENT_VERSION}_Linux.tar.gz" ../../../../output/clientBuilds;
+        cp "Crucible_v${CURRENT_VERSION}_Linux.tar.gz" ../../../../output/clientBuilds;
         cd ../../..;
     fi;
 
@@ -118,8 +118,8 @@ if is_flag_on "linux"; then
         ./diffBundleCompile;
         cd ../../../OneLife/build/source;
         ../../../minorGems/game/diffBundle/diffBundle \
-            "OneLife_v${PREVIOUS_VERSION}" \
-            "OneLife_v${CURRENT_VERSION}" \
+            "Crucible_v${PREVIOUS_VERSION}" \
+            "Crucible_v${CURRENT_VERSION}" \
             "${CURRENT_VERSION}_inc_linux.dbz" \
             "${CURRENT_VERSION}_full_linux.dbz";
         cp "${CURRENT_VERSION}_inc_linux.dbz" ../../../../output/diffBundles;
@@ -239,14 +239,14 @@ if is_flag_on "windows"; then
         sed -i -r '/^PLATFORM_COMPILE_FLAGS =/aPLATFORM_COMPILE_FLAGS += ${CUSTOM_MINGW_COMPILE_FLAGS}' Makefile;
         if is_flag_on "client"; then
             make;
-            cp OneLife OneLife.exe;
+            cp Crucible Crucible.exe;
         fi;
         if is_flag_on "editor"; then
             export CUSTOM_MINGW_COMPILE_FLAGS="${CUSTOM_MINGW_COMPILE_FLAGS} ${CUSTOM_MINGW_EDITOR_COMPILE_FLAGS}"
             export CUSTOM_MINGW_LINK_FLAGS="${CUSTOM_MINGW_LINK_FLAGS} ${CUSTOM_MINGW_EDITOR_LINK_FLAGS}"
             sed -i -r '/^PLATFORM_LIBPNG_FLAG =/aPLATFORM_LIBPNG_FLAG = -lz -lpng16' Makefile;
             ./makeEditor.sh;
-            cp EditOneLife EditOneLife.exe;
+            cp EditCrucible EditCrucible.exe;
         fi;
         mv Makefile.bak Makefile;
         export PATH="${_OLD_PATH}"; unset _OLD_PATH;
@@ -259,8 +259,8 @@ if is_flag_on "windows"; then
         cd OneLife/build;
         ./makeDistributionWindows "v${CURRENT_VERSION}";
         cd windows;
-        zip -r "OneLife_v${CURRENT_VERSION}_Windows.zip" "OneLife_v${CURRENT_VERSION}";
-        cp "OneLife_v${CURRENT_VERSION}_Windows.zip" ../../../../output/clientBuilds;
+        zip -r "Crucible_v${CURRENT_VERSION}_Windows.zip" "Crucible_v${CURRENT_VERSION}";
+        cp "Crucible_v${CURRENT_VERSION}_Windows.zip" ../../../../output/clientBuilds;
         cd ../../..;
     fi;
 
@@ -276,13 +276,13 @@ if is_flag_on "windows"; then
         cp -R repos/crucible-code/gameSource/graphics output/editorFiles;
         cp -R repos/crucible-code/gameSource/languages output/editorFiles;
         cp -R repos/crucible-code/gameSource/settings output/editorFiles;
-        cp repos/crucible-code/gameSource/EditOneLife.exe output/editorFiles;
+        cp repos/crucible-code/gameSource/EditCrucible.exe output/editorFiles;
         cd output/editorFiles;
         echo 0 > settings/fullscreen.ini;
-        if [[ -f "../editorBuilds/EditOneLife_v${CURRENT_VERSION}_Windows.zip" ]]; then
-            rm "../editorBuilds/EditOneLife_v${CURRENT_VERSION}_Windows.zip";
+        if [[ -f "../editorBuilds/EditCrucible_v${CURRENT_VERSION}_Windows.zip" ]]; then
+            rm "../editorBuilds/EditCrucible_v${CURRENT_VERSION}_Windows.zip";
         fi;
-        zip -r "../editorBuilds/EditOneLife_v${CURRENT_VERSION}_Windows.zip" *;
+        zip -r "../editorBuilds/EditCrucible_v${CURRENT_VERSION}_Windows.zip" *;
         cd ..;
         rm -r editorFiles;
         cd ../repos;
@@ -300,7 +300,7 @@ if is_flag_on "windows"; then
         _OLD_PATH="${PATH}"; export PATH="/usr/i686-w64-mingw32/bin:${PATH}";
         make;
         export PATH="${_OLD_PATH}"; unset _OLD_PATH;
-        cp OneLife OneLife.exe;
+        cp Crucible Crucible.exe;
         cd ../build;
         ./makeDistributionWindows "v${PREVIOUS_VERSION}";
         cd ../..;
@@ -317,8 +317,8 @@ if is_flag_on "windows"; then
         ./diffBundleCompile;
         cd ../../../OneLife/build/windows;
         ../../../minorGems/game/diffBundle/diffBundle \
-            "OneLife_v${PREVIOUS_VERSION}" \
-            "OneLife_v${CURRENT_VERSION}" \
+            "Crucible_v${PREVIOUS_VERSION}" \
+            "Crucible_v${CURRENT_VERSION}" \
             "${CURRENT_VERSION}_inc_win.dbz" \
             "${CURRENT_VERSION}_full_win.dbz";
         cp "${CURRENT_VERSION}_inc_win.dbz" ../../../../output/diffBundles;
@@ -398,7 +398,7 @@ if is_flag_on "macos"; then
         cd ../build;
         ./makeDistributionMacOSX "v${CURRENT_VERSION}" IntelMacOSX ../../../macos_deps/SDL.framework;
         cd mac;
-        cp "OneLife_v${CURRENT_VERSION}_IntelMacOSX.tar.gz" ../../../../output/clientBuilds;
+        cp "Crucible_v${CURRENT_VERSION}_IntelMacOSX.tar.gz" ../../../../output/clientBuilds;
         cd ../../..;
     fi;
 
@@ -433,8 +433,8 @@ if is_flag_on "macos"; then
         ./diffBundleCompile;
         cd ../../../OneLife/build/mac;
         ../../../minorGems/game/diffBundle/diffBundle \
-            "OneLife_v${PREVIOUS_VERSION}" \
-            "OneLife_v${CURRENT_VERSION}" \
+            "Crucible_v${PREVIOUS_VERSION}" \
+            "Crucible_v${CURRENT_VERSION}" \
             "${CURRENT_VERSION}_inc_mac.dbz" \
             "${CURRENT_VERSION}_full_mac.dbz";
         cp "${CURRENT_VERSION}_inc_mac.dbz" ../../../../output/diffBundles;
@@ -468,11 +468,11 @@ if is_flag_on "post"; then
         ssh -n richard@server1.oho.life '~/checkout/OneLife/scripts/remoteServerStartup.sh'
     elif is_flag_on "master"; then
         if is_flag_on "client"; then
-            sudo rm /var/www/html/download/latestBuilds/OneLife_v* || true;
+            sudo rm /var/www/html/download/latestBuilds/Crucible_v* || true;
             sudo cp output/clientBuilds/* /var/www/html/download/latestBuilds;
         fi;
         if is_flag_on "editor"; then
-            sudo rm /var/www/html/download/latestBuilds/EditOneLife_v* || true;
+            sudo rm /var/www/html/download/latestBuilds/EditCrucible_v* || true;
             sudo cp output/editorBuilds/* /var/www/html/download/latestBuilds;
         fi;
     fi;

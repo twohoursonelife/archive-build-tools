@@ -8,20 +8,26 @@ source ./scripts/CommonVariables.sh;
 
 ./scripts/BuildMacTestEnvironment.sh;
 
-pgrep -f OneLifeServer && pkill -f OneLifeServer;
+pgrep -f CrucibleServer && pkill -f CrucibleServer;
 
 cd build/server;
 
 osascript <<EOF
 tell application "iTerm2"
     tell current session of current window
-        split vertically with default profile command "sh -c 'cd $(pwd); ./OneLifeServer; read'"
+        split vertically with default profile command "sh -c 'cd $(pwd); ./CrucibleServer; read'"
     end tell
 end tell
 EOF
 
 cd ../client;
 
-./OneLife || echo "Exited with status code ${?}";
+[[ ! -e ~/Library/Preferences/Crucible_prefs.txt ]] || cp ~/Library/Preferences/Crucible_prefs.txt ~/Library/Preferences/Crucible_prefs.bak;
 
-pkill -TSTP OneLifeServer;
+pwd > ~/Library/Preferences/Crucible_prefs.txt;
+
+./Crucible || echo "Exited with status code ${?}";
+
+cp ~/Library/Preferences/Crucible_prefs.bak ~/Library/Preferences/Crucible_prefs.txt;
+
+pkill -TSTP CrucibleServer;

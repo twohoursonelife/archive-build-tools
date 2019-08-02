@@ -30,9 +30,9 @@ for TARGET in graphics languages otherSounds eqImpulseResponse.aiff reverbImpuls
 
 done;
 
-[[ -e "build/client/OneLife" ]] || ln -s "../../repos/OneLife/gameSource/OneLife" "build/client/OneLife";
+[[ -e "build/client/Crucible" ]] || ln -s "../../repos/OneLife/gameSource/Crucible" "build/client/Crucible";
 
-[[ -e "build/editor/EditOneLife" ]] || ln -s "../../repos/OneLife/gameSource/EditOneLife" "build/editor/EditOneLife";
+[[ -e "build/editor/EditCrucible" ]] || ln -s "../../repos/OneLife/gameSource/EditCrucible" "build/editor/EditCrucible";
 
 [[ -d build/client/settings ]] || mkdir build/client/settings;
 
@@ -68,7 +68,7 @@ done;
 
 [[ -e "build/server/serverCodeVersionNumber.txt" ]] || ln -s dataVersionNumber.txt build/server/serverCodeVersionNumber.txt;
 
-for TARGET in firstNames.txt lastNames.txt OneLifeServer; do
+for TARGET in firstNames.txt lastNames.txt CrucibleServer; do
 
     [[ -e "build/server/${TARGET}" ]] || ln -s "../../repos/OneLife/server/${TARGET}" "build/server/${TARGET}";
 
