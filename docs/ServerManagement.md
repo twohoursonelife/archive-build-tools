@@ -1,8 +1,16 @@
 # Server Management
 
+## Tag New Version
+
+Use this command to tag a new version of the client and server.
+
+```
+./scripts/TagNewVersion.sh
+```
+
 ## Build New Version
 
-Posting the clients also updates the server and the reflector.
+Use this command to update the clients and servers to the most recent tag.
 
 ```
 user=richard
