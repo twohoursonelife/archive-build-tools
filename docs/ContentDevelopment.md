@@ -1,57 +1,57 @@
 # Content Workflow
 
-## Git & GitHub
+Using the correct workflow is very important. If we don't then our changes will start to conflict and we might end up having to reimplement some of them. For this reason we have this guide. If any step of this guide is confusing please let someone know on the Discord so that we can fix it.
 
-Git is a software development tool. It solves the problem of having multiple people working on the same collection of files by intelligently "merging" changes. The software is very powerful but along with that power comes a some small additional complications to content development process.
+## Setting up a development environment
 
-On its surface Git is a way of tracking changes to a collection of files over time and amongst a potentially large group of developers. Each time a developer changes a bunch of files they create a _commit_, a kind of note that says what they changed and when and why and so forth. Developers can _push_ commits to remote repositories, essentially publishing them, and then other developers can _fetch_ those commits into their own repositories and build a more complete picture of the project's ongoing development.
+Before we can do anything we have to install the right tools. We're going to need a GitHub account and the GitHub desktop client as well as a "fork" of the data repository where we can make our own changes. Lastly we're going to need to install the current version of the editor.
 
-Here's how to think about Git. On your computer you have a directory that contains a bunch of files. This is called your *working directory*. If you make some changes to the files in your working directory you can save those changes in the Git repository. This is called *committing*. You can make several sets of changes and commit several times. Eventually you want to publish what you've done so you send all the data in your repository to a remote server. This is called *pushing*. Now that its published other people who may have been working on the same set of files can download your changes (*fetching*) and integrate them with their own (*merging*). Because it is common to merge immediately after fetching this combined operation has its own name, *pulling*.
-
-GitHub is an online provider of services related to Git. In our model every developer has two repositories a "local" repository which is stored on their computer and in which they directly make changes and a "remote" repository, called "origin", which is stored by GitHub. In addition each developer needs to be aware of one other repository, referred to as the "upstream" repository, which is stored on GitHub.
-
-## Process
-
-### Setup
-
-1. Go to https://github.com, click "Sign Up" and create an account.
+1. Go to https://github.com and click "Sign Up" and create an account.
 2. Go to https://github.com/chardbury/crucible-data and click the "Fork" button.
 3. Go to https://desktop.github.com, download and install the desktop client.
 4. Log in to the desktop client and clone the [your-user-name]/crucible-data repository.
-5. Go to [Documents]/GitHub/crucible-data on your computer.
-6. Put the editor binary, DLL files, graphics and settings folders in this folder.
+5. Go to http://crucible.oho.life/download/latestBuilds/ and .zip file containing EditCrucible in the name.
+6. Go to [Documents]/GitHub/crucible-data on your computer.
+7. Put the editor binary, DLL files, graphics and settings folders from the .zip file into this folder.
 
-### Fetch
+## Fetching the latest upstream content
 
-7. Click on the "Fetch origin" button.
-8. Click on the "Current branch" button.
-9. Select the "master" branch.
-10. Click on the "Current branch" button again.
-11. Click on the "Choose a branch to merge into master" button.
-12. Select the "upstream/master" branch.
-13. Click on the "Merge upstream/master into master" button.
-14. If you then have a button marked "Push origin", you may click on it.
+Before starting a new content branch we must first ensure that our master branch is up to date with the upstream master branch. The master branches represent the main line of development so if we were looking for sprites or objects added recently by others we want to be certain to have the most recent copy of the upstream master. Here's how we do this.
 
-### Branch
+1. Click on the "Fetch origin" button.
+2. Click on the "Current branch" button.
+3. Select the "master" branch.
+4. Click on the "Current branch" button again.
+5. Click on the "Choose a branch to merge into master" button.
+6. Select the "upstream/master" branch.
+7. Click on the "Merge upstream/master into master" button.
+8. If you then have a button marked "Push origin" click on it.
 
-15. Click on the "Current branch" button.
-16. Click on the "New branch" button.
-17. Give the new branch a name related to the card.
-18. If you have the option of selecting a base branch then select "master".
-19. Click on the "Create branch" button.
+## Starting a new feature branch
 
-### Commit
+Now that our master branch is in sync with the upstream master branch we can create a new feature branch for the features we'd like to add. A feature branch is transient, meaning that it will exist for the duration of the development up until the point it is merged into the upstream master branch and then it can be deleted. Here's how to make a new branch.
 
-20. Click on the "Current branch" button.
-21. Select the branch you intend to work on.
-22. Make the required changes in the editor.
-23. Back in the GitHub client, in the lower left, enter a commit message.
-24. Press the "Commit to [your-branch-name]" button.
-25. Repeat steps 21-23 until you have completed the feature.
+1. Click on the "Current branch" button.
+2. Click on the "New branch" button.
+3. Give the new branch a name related to the feature you are adding.
+4. If you have the option of selecting a base branch then select "master".
+5. Click on the "Create branch" button.
 
-### Pull Request
+## Adding and committing changes
 
-26. Click on the "Publish branch" button.
-27. From the "Branch" menu select "Create pull request".
-28. Your web browser will open, enter any additional details for the request.
-29. Press the "Create pull request button".
+Congratulations! We're now ready to start adding features. The steps below can be done any number of times, improving and refining things until you are happy with the feature. The first two steps are included just in case you've switched over to a different branch to work on something else for a bit.
+
+1. Click on the "Current branch" button.
+2. Select the branch you intend to work on.
+3. Open the editory and make the required changes.
+4. Back in the GitHub client, in the lower left, enter a commit message.
+5. Press the "Commit to [your-branch-name]" button.
+
+## Pushing your commits
+
+Now that we've got everything we wanted to add all in place it is time to get those changes into the upstream master branch and thereafter the actual game. This is where we hand over the work to the code owners to merge it in and build a new version of the game. Once we've done this we should not touch this branch again without first checking with the code owners on Discord. Here's what we have to do.
+
+1. Click on the "Publish branch" button.
+2. From the "Branch" menu select "Create pull request".
+3. Your web browser will open, enter any additional details for the request.
+4. Press the "Create pull request button".

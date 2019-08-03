@@ -13,8 +13,10 @@ cd repos/OneLife;
 cd gameSource;
 
 export CUSTOM_MACOSX_LINK_FLAGS="-F /Library/Frameworks";
-sed -Ei -e 's#/usr/lib/libz.a#/usr/local/opt/zlib/lib/libz.a#' Makefile
-sed -Ei -e 's#/usr/lib/libpng.a#/usr/local/lib/libpng.a#' Makefile
+
+sed -Ei -e 's#/usr/lib/libz.a#/usr/local/opt/zlib/lib/libz.a#' Makefile;
+
+sed -Ei -e 's#/usr/lib/libpng.a#/usr/local/lib/libpng.a#' Makefile;
 
 [[ -e Crucible ]] && rm Crucible;
 
