@@ -22,7 +22,11 @@ sed -Ei -e 's#/usr/lib/libpng.a#/usr/local/lib/libpng.a#' Makefile;
 
 make;
 
+[[ -e EditCrucible ]] && rm EditCrucible;
+
 ./makeEditor.sh;
+
+[[ -e EditCrucible ]];
 
 cd ../server;
 
