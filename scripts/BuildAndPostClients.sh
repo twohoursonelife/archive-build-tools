@@ -89,7 +89,7 @@ if is_flag_on "linux"; then
         make;
         cd ../build/source;
         ./makeLinuxBuild "v${CURRENT_VERSION}";
-        cp "Crucible_v${CURRENT_VERSION}_Linux.tar.gz" ../../../../output/clientBuilds;
+        cp "${TAG_BASE}${CURRENT_VERSION}_Linux.tar.gz" ../../../../output/clientBuilds;
         cd ../../..;
     fi;
 
@@ -118,8 +118,8 @@ if is_flag_on "linux"; then
         ./diffBundleCompile;
         cd ../../../OneLife/build/source;
         ../../../minorGems/game/diffBundle/diffBundle \
-            "Crucible_v${PREVIOUS_VERSION}" \
-            "Crucible_v${CURRENT_VERSION}" \
+            "${TAG_BASE}${PREVIOUS_VERSION}" \
+            "${TAG_BASE}${CURRENT_VERSION}" \
             "${CURRENT_VERSION}_inc_linux.dbz" \
             "${CURRENT_VERSION}_full_linux.dbz";
         cp "${CURRENT_VERSION}_inc_linux.dbz" ../../../../output/diffBundles;
@@ -259,8 +259,8 @@ if is_flag_on "windows"; then
         cd OneLife/build;
         ./makeDistributionWindows "v${CURRENT_VERSION}";
         cd windows;
-        zip -r "Crucible_v${CURRENT_VERSION}_Windows.zip" "Crucible_v${CURRENT_VERSION}";
-        cp "Crucible_v${CURRENT_VERSION}_Windows.zip" ../../../../output/clientBuilds;
+        zip -r "${TAG_BASE}${CURRENT_VERSION}_Windows.zip" "${TAG_BASE}${CURRENT_VERSION}";
+        cp "${TAG_BASE}${CURRENT_VERSION}_Windows.zip" ../../../../output/clientBuilds;
         cd ../../..;
     fi;
 
@@ -317,8 +317,8 @@ if is_flag_on "windows"; then
         ./diffBundleCompile;
         cd ../../../OneLife/build/windows;
         ../../../minorGems/game/diffBundle/diffBundle \
-            "Crucible_v${PREVIOUS_VERSION}" \
-            "Crucible_v${CURRENT_VERSION}" \
+            "${TAG_BASE}${PREVIOUS_VERSION}" \
+            "${TAG_BASE}${CURRENT_VERSION}" \
             "${CURRENT_VERSION}_inc_win.dbz" \
             "${CURRENT_VERSION}_full_win.dbz";
         cp "${CURRENT_VERSION}_inc_win.dbz" ../../../../output/diffBundles;
@@ -398,7 +398,7 @@ if is_flag_on "macos"; then
         cd ../build;
         ./makeDistributionMacOSX "v${CURRENT_VERSION}" IntelMacOSX ../../../macos_deps/SDL.framework;
         cd mac;
-        cp "Crucible_v${CURRENT_VERSION}_IntelMacOSX.tar.gz" ../../../../output/clientBuilds;
+        cp "${TAG_BASE}${CURRENT_VERSION}_IntelMacOSX.tar.gz" ../../../../output/clientBuilds;
         cd ../../..;
     fi;
 
@@ -433,8 +433,8 @@ if is_flag_on "macos"; then
         ./diffBundleCompile;
         cd ../../../OneLife/build/mac;
         ../../../minorGems/game/diffBundle/diffBundle \
-            "Crucible_v${PREVIOUS_VERSION}" \
-            "Crucible_v${CURRENT_VERSION}" \
+            "${TAG_BASE}${PREVIOUS_VERSION}" \
+            "${TAG_BASE}${CURRENT_VERSION}" \
             "${CURRENT_VERSION}_inc_mac.dbz" \
             "${CURRENT_VERSION}_full_mac.dbz";
         cp "${CURRENT_VERSION}_inc_mac.dbz" ../../../../output/diffBundles;
