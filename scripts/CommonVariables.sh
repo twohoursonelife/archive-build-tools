@@ -1,9 +1,9 @@
 #!/bin/bash
 
-REPO_CODE="crucible-code"
+REPO_CODE="2HOL-code"
 
-REPO_DATA="crucible-data"
+REPO_DATA="2HOL-data"
 
-REPO_GEMS="crucible-gems"
+REPO_GEMS="2HOL-gems"
 
-TAG_BASE="Crucible_v"
+TAG_BASE="2HOL_v"
